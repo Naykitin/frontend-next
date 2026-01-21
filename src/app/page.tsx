@@ -8,15 +8,16 @@ const GET_PRODUCTS = gql`
   query GetProducts {
     products(first: 10) {
       nodes {
-      id
-      name
-      slug
-      ... on SimpleProduct {
-        price
-      }
-      image {
-        sourceUrl
-        altText
+        id
+        name
+        slug
+        ... on SimpleProduct {
+          price
+        }
+        image {
+          sourceUrl
+          altText
+        }
       }
     }
   }
@@ -44,10 +45,10 @@ export default async function Home() {
         {products.map((product) => (
           <div key={product.id} className="border p-4 rounded-lg shadow-sm hover:shadow-md transition">
             {product.image && (
-              <img 
-              src={product.image.sourceUrl}
-              alt={product.image.altText}
-              className="w-full h-48 object-cover rounded-md"
+              <img
+                src={product.image.sourceUrl}
+                alt={product.image.altText}
+                className="w-full h-48 object-cover rounded-md"
               />
             )}
             <h2 className="text-xl font-semibold mt-4">{product.name}</h2>
