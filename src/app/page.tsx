@@ -1,25 +1,8 @@
 // src/app/page.tsx
 import { client } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
+import { SimpleProduct, GetProductsResponse } from "@/types/product";
 
-interface ProductImage {
-  sourceUrl: string;
-  altText: string;
-}
-
-interface SimpleProduct {
-  id: string;
-  name: string;
-  slug: string;
-  price: string;
-  image: ProductImage;
-}
-
-interface GetProductsResponse {
-  products: {
-    nodes: SimpleProduct[];
-  };
-}
 
 const GET_PRODUCTS = gql`
   query GetProducts {
@@ -77,4 +60,4 @@ export default async function Home() {
       </div>
     </main>
   );
-}
+} 

@@ -1,12 +1,21 @@
 // src/types/product.ts
-export interface Product {
+
+export interface ProductImage {
+   sourceUrl: string;
+   altText: string;
+}
+
+export interface SimpleProduct {
    id: string;
    name: string;
    slug: string;
+   price: string;
+   image: ProductImage | null;
    description?: string;
-   image?: {
-      sourceUrl: string;
-      altText?: string;
+}
+
+export interface GetProductsResponse {
+   products: {
+      nodes: SimpleProduct[];
    };
-   price?: string;
 }
