@@ -1,12 +1,10 @@
 // src/app/product/[slug]/page.tsx
 import { client } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
-import { SimpleProduct } from "@/types/product";
+import { GetProductResponse } from "@/types/product";
 import { notFound } from "next/navigation";
 
-interface GetProductResponse {
-   product: SimpleProduct;
-}
+
 
 const GET_PRODUCT_BY_SLUG = gql`
    query GetProductBySlug($id: ID!) {
@@ -32,12 +30,12 @@ export default async function ProductPage({
 }) {
    const { slug } = await params;
 
-   const { data } = await client.query({
+   const { data } = await client.query<GetProductResponse>({
       query: GET_PRODUCT_BY_SLUG,
       variables: { id: slug },
    });
 
-   const product: SimpleProduct | null = data?.product;
+   const product = data?.product;
 
    if (!product) {
       notFound();
