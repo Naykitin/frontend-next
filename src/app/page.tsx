@@ -2,6 +2,7 @@
 import { client } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import { SimpleProduct, GetProductsResponse } from "@/types/product";
+import Link from "next/link";
 
 
 const GET_PRODUCTS = gql`
@@ -53,9 +54,11 @@ export default async function Home() {
             )}
             <h2 className="text-xl font-semibold mt-4">{product.name}</h2>
             <p className="text-blue-600 font-bold mt-2">{product.price}</p>
-            <button className="mt-4 w-full bg-black text-white py-2 rounded-md hover:bg-grey-800">
-              View Product
-            </button>
+            <Link href={`/product/${product.slug}`}>
+              <button className="mt-4 w-full bg-black text-white py-2 rounded-md hover:bg-grey-800">
+                View Product
+              </button>
+            </Link>
           </div>
         ))}
       </div>
