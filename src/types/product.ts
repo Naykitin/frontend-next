@@ -19,3 +19,7 @@ export interface GetProductsResponse {
       nodes: SimpleProduct[];
    };
 }
+
+export interface GetProductResponse {
+   product: SimpleProduct;
+}
