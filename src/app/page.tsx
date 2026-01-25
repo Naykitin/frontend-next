@@ -44,18 +44,20 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map((product) => (
-          <div key={product.id} className="border p-4 rounded-lg shadow-sm hover:shadow-md transition">
-            {product.image && (
-              <img
-                src={product.image.sourceUrl}
-                alt={product.image.altText}
-                className="w-full h-48 object-cover rounded-md"
-              />
-            )}
-            <h2 className="text-xl font-semibold mt-4">{product.name}</h2>
+          <div key={product.id} className="group border p-4 rounded-xl shadow-sm hover:shadow-xl transition-all duraction-300 hover:-translate-y-1 bg-white">
+            <div className="overflow-hidden rounded-lg">
+              {product.image && (
+                <img
+                  src={product.image.sourceUrl}
+                  alt={product.image.altText}
+                  className="w-full h-48 object-cover trnasition-transform duration-500 group-hover:scale-110"
+                />
+              )}
+            </div>
+            <h2 className="text-xl font-semibold mt-4 group-hover:text-blue-600 transition-colors">{product.name}</h2>
             <p className="text-blue-600 font-bold mt-2">{product.price}</p>
             <Link href={`/product/${product.slug}`}>
-              <button className="mt-4 w-full bg-black text-white py-2 rounded-md hover:bg-grey-800">
+              <button className="mt-4 w-full bg-black text-white py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
                 View Product
               </button>
             </Link>
