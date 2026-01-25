@@ -27,7 +27,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <main className="flex-grow animate-in fade-in duration-700">
+          {children}
+        </main>
       </body>
     </html>
   );
