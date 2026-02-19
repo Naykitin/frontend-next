@@ -1,10 +1,12 @@
 // src/lib/apollo-client.ts 
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { HttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+
+const httpLink = new HttpLink({
+  // Пробуем локальный адрес, так как мы пробросили порт
+  uri: "http://localhost:10004/graphql",
+});
 
 export const client = new ApolloClient({
-  link: new HttpLink({
-    uri: 'http://headless-shop.local/graphql',
-  }),
+  link: httpLink,
   cache: new InMemoryCache(),
 });
