@@ -3,7 +3,7 @@ import { client } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import { SimpleProduct, GetProductsResponse } from "@/types/product";
 import Link from "next/link";
-
+import Image from "next/image";
 
 const GET_PRODUCTS = gql`
   query GetProducts {
@@ -45,12 +45,14 @@ export default async function Home() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map((product) => (
           <div key={product.id} className="group border p-4 rounded-xl shadow-sm hover:shadow-xl transition-all duraction-300 hover:-translate-y-1 bg-white">
-            <div className="overflow-hidden rounded-lg">
+            <div className="relative h-64 overflow-hidden rounded-lg">
               {product.image && (
-                <img
+                <Image
                   src={product.image.sourceUrl}
-                  alt={product.image.altText}
-                  className="w-full h-48 object-cover trnasition-transform duration-500 group-hover:scale-110"
+                  alt={product.image.altText || product.name}
+                  fill
+                  unoptimized
+                  className="object-contain trnasition-transform duration-500 group-hover:scale-110"
                 />
               )}
             </div>

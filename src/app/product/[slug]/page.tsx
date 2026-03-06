@@ -3,6 +3,8 @@ import { client } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import { GetProductResponse } from "@/types/product";
 import { notFound } from "next/navigation";
+import Image from "next/image";
+
 
 
 
@@ -42,14 +44,17 @@ export default async function ProductPage({
    }
 
    return (
-      <main className="container mx-auto p-8 max-x-6xl">
+      <main className="container mx-auto p-8 max-w-6xl">
          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-gray-100 rounded-2xl overflow-hidden">
+            <div className="bg-gray-100 rounded-2xl overflow-hidden relative min-h-[500px]">
                {product.image ? (
-                  <img
+                  <Image
                      src={product.image.sourceUrl}
-                     alt={product.image.altText}
-                     className="w-full h-auto object-cover"
+                     alt={product.image.altText || product.name}
+                     fill
+                     priority
+                     unoptimized
+                     className="object-contain p-4"
                   />
                ) : (
                   <div className="h-96 items-center justify-center text-gray-400">No Photo</div>
