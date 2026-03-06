@@ -2,6 +2,7 @@
 import { client } from '@/lib/apollo-client';
 import { GET_PRODUCTS_BY_CATEGORY } from "@/lib/queries/get-products-by-category";
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface CategoryData {
     productCategory: {
@@ -45,7 +46,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                 {category.products.nodes.map((product: any) => (
                     <div key={product.databaseId} className='border p-4 rounded shadow-sm'>
-                        <div className='relative h-64 w-full mb-4 overflow-hidden rounded-lg bg-gray100'>
+                        <div className='relative h-64 w-full mb-4 overflow-hidden rounded-lg bg-gray-100'>
                             {product.image ? (
                                 <Image
                                     src={product.image.sourceUrl}
@@ -59,6 +60,12 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                         </div>
                         <h2 className='text-xl font-semibold'>{product.name}</h2>
                         <p className='text-gray-600'>{product.price}</p>
+
+                        <Link href={`/product/${product.slug}`}>
+                            <button className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300">
+                                View Product
+                            </button>
+                        </Link>
                     </div>
                 ))}
             </div>
