@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 
 const httpLink = new HttpLink({
   // Пробуем локальный адрес, так как мы пробросили порт
-  uri: "http://localhost:10004/graphql",
+  uri: "http://localhost:8080/graphql",
 });
 
 export const client = new ApolloClient({
